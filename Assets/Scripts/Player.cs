@@ -18,5 +18,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * _playerMovementSpeed * Time.deltaTime);
+        transform.Translate(Vector3.up * Input.GetAxis("Vertical") * _playerMovementSpeed * Time.deltaTime);
     }
 }
