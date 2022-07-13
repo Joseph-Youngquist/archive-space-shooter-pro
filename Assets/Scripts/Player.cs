@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateMovement();
+    }
+
+    void CalculateMovement()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -24,27 +29,21 @@ public class Player : MonoBehaviour
 
         transform.Translate(movementVector * _playerMovementSpeed * Time.deltaTime);
 
-        // prevent the player from moving higher than 0 on the y position
-        // prevent the player from moving below than -3.75 on the y position
-
-        // wrap the player on the left and right bounds when player position is
-        // less than -9.2 or greater than 9.2
-
-        if (transform.position.y >= 0)
+        // Keep the player's ship within a clamped range of 0 max and -3.75 min.
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.75f, 0), 0);
+        
+        /*
+         * wrap the player on the left and right bounds when player position is
+         * less than -9.3 or greater than 9.3
+         * we multiply the x position by negative value very close to -1 but not -1
+         * if we simply multiply by -1 then we could have an edge case where we're
+         * setting the postion at an equals boundry of either -9.3 or 9.3 and the 
+         * ship will "bounce" between the left and right sides of the game window.
+         * 
+         */
+        if (transform.position.x <= -9.3f || transform.position.x >= 9.3f)
         {
-            transform.position = new Vector3(transform.position.x, 0, 0);
-        }
-        else if (transform.position.y <= -3.75f)
-        {
-            transform.position = new Vector3(transform.position.x, -3.75f, 0);
-        }
-
-        if (transform.position.x <= -9.2f)
-        {
-            transform.position = new Vector3(9.19f, transform.position.y, 0);
-        } else if (transform.position.x >= 9.2f)
-        {
-            transform.position = new Vector3(-9.19f, transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x * -0.9999f, transform.position.y, 0);
         }
     }
 }
