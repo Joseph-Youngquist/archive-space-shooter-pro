@@ -46,4 +46,9 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(_spawnRateMin, _spawnRateMax));
         }
     }
+
+    public void OnPlayerDeath(bool allowed)
+    {
+        _spawningAllowed = allowed;
+    }
 }
