@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _playerMovementSpeed = 5f;
 
+    [SerializeField]
+    private GameObject _laserPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +22,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+
+        // when the user hits the space key, spawn the laser
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     void CalculateMovement()
@@ -31,7 +41,7 @@ public class Player : MonoBehaviour
 
         // Keep the player's ship within a clamped range of 0 max and -3.75 min.
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.75f, 0), 0);
-        
+
         /*
          * wrap the player on the left and right bounds when player position is
          * less than -9.3 or greater than 9.3
