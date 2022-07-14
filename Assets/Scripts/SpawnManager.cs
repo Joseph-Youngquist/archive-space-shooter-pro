@@ -7,9 +7,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
-    private float _spawnRateMin = 3.0f;
+    private float _spawnRateMin = 1.0f;
     [SerializeField]
-    private float _spawnRateMax = 9.0f;
+    private float _spawnRateMax = 5.0f;
     [SerializeField]
     private bool _spawningAllowed = true;
 
