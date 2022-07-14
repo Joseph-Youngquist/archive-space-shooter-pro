@@ -7,6 +7,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
+    private GameObject _enemyContainer;
+
+    [SerializeField]
     private float _spawnRateMin = 1.0f;
     [SerializeField]
     private float _spawnRateMax = 3.5f;
@@ -21,6 +24,11 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("SpawnManager::Start() - Enemy Prefab is NULL");
         }
 
+        if (_enemyContainer == null)
+        {
+            Debug.LogError("SpawnManager::Start() - Enemy Container is NULL");
+        }
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -32,7 +40,8 @@ public class SpawnManager : MonoBehaviour
 
             Vector3 newEnemyPosition = new Vector3(randomX, 7.0f, 0);
 
-            Instantiate(_enemyPrefab, newEnemyPosition, Quaternion.identity);
+            GameObject newEnemy = Instantiate(_enemyPrefab, newEnemyPosition, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
 
             yield return new WaitForSeconds(Random.Range(_spawnRateMin, _spawnRateMax));
         }
