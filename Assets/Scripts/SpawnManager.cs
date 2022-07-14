@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnRateMin = 1.0f;
     [SerializeField]
-    private float _spawnRateMax = 5.0f;
+    private float _spawnRateMax = 3.5f;
     [SerializeField]
     private bool _spawningAllowed = true;
 
