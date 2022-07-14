@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _playerFireRate = 0.15f; 
     private bool _canFireLasers = true;
+    [SerializeField]
+    private int _playerLives = 3;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -73,5 +75,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_playerFireRate);
         _canFireLasers = true;
         StopCoroutine(LaserCooldown());
+    }
+
+    public void RemoveLife()
+    {
+        _playerLives--;
+
+        if (_playerLives < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
