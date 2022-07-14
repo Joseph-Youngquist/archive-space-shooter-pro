@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private float _playerMovementSpeed = 5f;
     [SerializeField]
     private float _playerFireRate = 0.15f; 
-    private float _canFire = -1f;
+    private bool _canFireLasers = true;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -25,12 +25,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-
+        
         // when the user hits the space key, spawn the laser
-        if (Input.GetButtonDown("Fire1") && Time.time > _canFire)
+        if (Input.GetButtonDown("Fire1") && _canFireLasers)
         {
-            _canFire = Time.time + _playerFireRate;
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            FireLaser();
         }
     }
 
@@ -59,5 +58,20 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x * -0.9999f, transform.position.y, 0);
         }
+    }
+
+    void FireLaser()
+    {
+        
+        _canFireLasers = false;
+        Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+        StartCoroutine(LaserCooldown());
+    }
+
+    IEnumerator LaserCooldown()
+    {
+        yield return new WaitForSeconds(_playerFireRate);
+        _canFireLasers = true;
+        StopCoroutine(LaserCooldown());
     }
 }
