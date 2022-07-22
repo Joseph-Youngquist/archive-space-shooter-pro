@@ -27,7 +27,7 @@ public class TripleShot : MonoBehaviour
             
             if (player != null)
             {
-                player.ActivatePowerUp();
+                player.ActivatePowerUp("Triple_Shot");
             }
 
             Destroy(this.gameObject);

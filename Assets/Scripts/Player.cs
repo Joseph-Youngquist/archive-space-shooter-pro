@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool _isTripleShotActive = false;
+    [SerializeField]
+    private float _tripleShotCoolDown = 3.5f;
 
     [SerializeField]
     private int _playerLives = 3;
@@ -113,8 +115,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ActivatePowerUp()
+    public void ActivatePowerUp(string powerupName)
+    {
+        switch (powerupName)
+        {
+            case "Triple_Shot":
+                StartCoroutine(TripleShotCooldown());
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    IEnumerator TripleShotCooldown()
     {
         _isTripleShotActive = true;
+        yield return new WaitForSeconds(_tripleShotCoolDown);
+        _isTripleShotActive = false;
+        StopCoroutine(TripleShotCooldown());
     }
 }
