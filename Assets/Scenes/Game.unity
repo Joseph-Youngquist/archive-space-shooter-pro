@@ -157,6 +157,7 @@ MonoBehaviour:
   _playerMovementSpeed: 5
   _playerFireRate: 0.15
   _isTripleShotActive: 0
+  _tripleShotCoolDown: 3.5
   _playerLives: 3
   _laserPrefab: {fileID: 1643644341760993635, guid: 588c5bea0bde1be4faed10f2be39c0b7, type: 3}
   _tripleShotPrefab: {fileID: 1469334038886796167, guid: eb7ad65321476cd43a7ede770fc8f2ec, type: 3}
@@ -412,6 +413,9 @@ MonoBehaviour:
   _spawnRateMin: 1
   _spawnRateMax: 3.5
   _spawningAllowed: 1
+  _tripleShotPrefab: {fileID: 2872055579898682001, guid: af5ce1fae75cf4a47afe31479c2efd2e, type: 3}
+  _spawnPowerUpRateMin: 3
+  _spawnPowerUpRateMax: 7
 --- !u!4 &1583859249
 Transform:
   m_ObjectHideFlags: 0
