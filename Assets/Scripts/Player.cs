@@ -25,9 +25,6 @@ public class Player : MonoBehaviour
     private float _tripleShotCoolDown = 3.5f;
 
     [SerializeField]
-    private float _shieldsUpCooldown = 30f;
-
-    [SerializeField]
     private int _playerLives = 3;
 
     [SerializeField]
@@ -132,10 +129,7 @@ public class Player : MonoBehaviour
     {
         if (_areShieldsActive)
         {
-            _areShieldsActive = false;
-            
-            _playerShields.SetActive(false);
-            
+            ActivateShields(false);
             return;
         }
 
@@ -159,7 +153,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(SpeedBoostCooldown());
                 break;
             case "Shields":
-                StartCoroutine(ShieldsUpCooldown());
+                ActivateShields(true);
                 break;
             default:
                 break;
@@ -183,12 +177,9 @@ public class Player : MonoBehaviour
         StopCoroutine(SpeedBoostCooldown());
     }
 
-    IEnumerator ShieldsUpCooldown()
+    void ActivateShields(bool status)
     {
-        _areShieldsActive = true;
-        _playerShields.SetActive(true);
-        yield return new WaitForSeconds(_shieldsUpCooldown);
-        _areShieldsActive = false;
-        _playerShields.SetActive(false);
+        _areShieldsActive = status;
+        _playerShields.SetActive(_areShieldsActive);
     }
 }

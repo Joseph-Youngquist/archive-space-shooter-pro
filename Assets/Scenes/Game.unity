@@ -263,6 +263,7 @@ MonoBehaviour:
   _speedBoostMovementSpeed: 8.5
   _speedBoostCoolDown: 3.5
   _playerFireRate: 0.15
+  _areShieldsActive: 0
   _tripleShotCoolDown: 3.5
   _playerLives: 3
   _laserPrefab: {fileID: 1643644341760993635, guid: 588c5bea0bde1be4faed10f2be39c0b7, type: 3}

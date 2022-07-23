@@ -86,5 +86,6 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath(bool allowed)
     {
         _spawningAllowed = allowed;
+        StopAllCoroutines();
     }
 }
