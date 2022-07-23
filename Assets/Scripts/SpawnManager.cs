@@ -16,6 +16,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private bool _spawningAllowed = true;
 
+    [SerializeField]
+    GameObject _tripleShotPrefab;
+
+    [SerializeField]
+    private float _spawnPowerUpRateMin = 3.0f;
+    [SerializeField]
+    private float _spawnPowerUpRateMax = 7.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +37,13 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("SpawnManager::Start() - Enemy Container is NULL");
         }
 
+        if (_tripleShotPrefab == null)
+        {
+            Debug.LogError("SpawnManager::Start() - TripleShot Prefab is NULL");
+        }
+
         StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnPowerUp());
     }
 
     IEnumerator SpawnEnemies()
@@ -44,6 +58,22 @@ public class SpawnManager : MonoBehaviour
             newEnemy.transform.parent = _enemyContainer.transform;
 
             yield return new WaitForSeconds(Random.Range(_spawnRateMin, _spawnRateMax));
+        }
+    }
+
+    IEnumerator SpawnPowerUp()
+    {
+        while(_spawningAllowed)
+        {
+            float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
+
+            yield return new WaitForSeconds(randomRate);
+
+            float randomPosX = Random.Range(-9.0f, 9.0f);
+
+            Vector3 newPowerUpPosition = new Vector3(randomPosX, 7.0f, 0);
+
+            GameObject newPowerUp = Instantiate(_tripleShotPrefab, newPowerUpPosition, Quaternion.identity);
         }
     }
 
