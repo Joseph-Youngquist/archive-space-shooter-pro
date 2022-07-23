@@ -43,7 +43,7 @@ public class PowerUp : MonoBehaviour
                         player.ActivatePowerUp("Speed_Boost");
                         break;
                     case 2:
-                        player.ActivatePowerUp("Shileds");
+                        player.ActivatePowerUp("Shields");
                         break;
                     default:
                         break;
