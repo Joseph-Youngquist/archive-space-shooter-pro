@@ -5,15 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _playerMovementSpeed = 5f;
-    
+    private float _playerBaseMovementSpeed = 5f;
+    private float _playerMovementSpeed;
+    [SerializeField]
+    private float _speedBoostMovementSpeed = 8.5f;
+    [SerializeField]
+    private float _speedBoostCoolDown = 3.5f;
+
     [SerializeField]
     private float _playerFireRate = 0.15f;
     private Vector3 _laserOffset = new Vector3(0, 0.8f, 0);
     private bool _canFireLasers = true;
 
-    [SerializeField]
     private bool _isTripleShotActive = false;
+    private bool _isSpeedBoostActive = false;
+
     [SerializeField]
     private float _tripleShotCoolDown = 3.5f;
 
@@ -25,6 +31,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    
+
 
     private SpawnManager _spawnManager;
 
@@ -40,6 +48,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Player::Start() - Spawn Manager is NULL");
         }
+
+        _playerMovementSpeed = _playerBaseMovementSpeed;
     }
 
     // Update is called once per frame
@@ -122,6 +132,9 @@ public class Player : MonoBehaviour
             case "Triple_Shot":
                 StartCoroutine(TripleShotCooldown());
                 break;
+            case "Speed_Boost":
+                StartCoroutine(SpeedBoostCooldown());
+                break;
             default:
                 break;
 
@@ -134,5 +147,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_tripleShotCoolDown);
         _isTripleShotActive = false;
         StopCoroutine(TripleShotCooldown());
+    }
+    
+    IEnumerator SpeedBoostCooldown()
+    {
+        _isSpeedBoostActive = true;
+        _playerMovementSpeed = _speedBoostMovementSpeed;
+        yield return new WaitForSeconds(_speedBoostCoolDown);
+        _isSpeedBoostActive = false;
+        _playerMovementSpeed = _playerBaseMovementSpeed;
+        StopCoroutine(SpeedBoostCooldown());
     }
 }
