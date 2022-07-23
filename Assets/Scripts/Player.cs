@@ -6,7 +6,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _playerMovementSpeed = 5f;
-    
+    [SerializeField]
+    private float _speedBoostPowerUpMultiplier = 1f;
+    [SerializeField]
+    private float _speedBoostCoolDown = 3.5f;
+
     [SerializeField]
     private float _playerFireRate = 0.15f;
     private Vector3 _laserOffset = new Vector3(0, 0.8f, 0);
@@ -25,6 +29,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    
+
 
     private SpawnManager _spawnManager;
 
@@ -61,7 +67,7 @@ public class Player : MonoBehaviour
 
         Vector3 movementVector = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(movementVector * _playerMovementSpeed * Time.deltaTime);
+        transform.Translate(movementVector * _playerMovementSpeed * _speedBoostPowerUpMultiplier * Time.deltaTime);
 
         // Keep the player's ship within a clamped range of 0 max and -3.75 min.
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.75f, 0), 0);
@@ -122,6 +128,9 @@ public class Player : MonoBehaviour
             case "Triple_Shot":
                 StartCoroutine(TripleShotCooldown());
                 break;
+            case "Speed_Boost":
+                StartCoroutine(SpeedBoostCooldown());
+                break;
             default:
                 break;
 
@@ -134,5 +143,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_tripleShotCoolDown);
         _isTripleShotActive = false;
         StopCoroutine(TripleShotCooldown());
+    }
+    
+    IEnumerator SpeedBoostCooldown()
+    {
+        _speedBoostPowerUpMultiplier = 2f;
+        yield return new WaitForSeconds(_speedBoostCoolDown);
+        _speedBoostPowerUpMultiplier = 1f;
+        StopCoroutine(SpeedBoostCooldown());
     }
 }

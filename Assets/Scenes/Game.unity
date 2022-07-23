@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovementSpeed: 5
+  _speedBoostPowerUpMultiplier: 1
+  _speedBoostCoolDown: 3.5
   _playerFireRate: 0.15
   _isTripleShotActive: 0
   _tripleShotCoolDown: 3.5
@@ -413,7 +415,9 @@ MonoBehaviour:
   _spawnRateMin: 1
   _spawnRateMax: 3.5
   _spawningAllowed: 1
-  _tripleShotPrefab: {fileID: 2872055579898682001, guid: af5ce1fae75cf4a47afe31479c2efd2e, type: 3}
+  _powerUpPrefabs:
+  - {fileID: 2872055579898682001, guid: af5ce1fae75cf4a47afe31479c2efd2e, type: 3}
+  - {fileID: 3449877423107222610, guid: a78064ae9ed00a649bcc3b925051e62b, type: 3}
   _spawnPowerUpRateMin: 3
   _spawnPowerUpRateMax: 7
 --- !u!4 &1583859249

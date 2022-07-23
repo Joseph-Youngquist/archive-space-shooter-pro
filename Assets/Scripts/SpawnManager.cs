@@ -17,7 +17,8 @@ public class SpawnManager : MonoBehaviour
     private bool _spawningAllowed = true;
 
     [SerializeField]
-    GameObject _tripleShotPrefab;
+    GameObject[] _powerUpPrefabs;
+    
 
     [SerializeField]
     private float _spawnPowerUpRateMin = 3.0f;
@@ -37,9 +38,9 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("SpawnManager::Start() - Enemy Container is NULL");
         }
 
-        if (_tripleShotPrefab == null)
+        if (_powerUpPrefabs == null)
         {
-            Debug.LogError("SpawnManager::Start() - TripleShot Prefab is NULL");
+            Debug.LogError("SpawnManager::Start() - PowerUp Prefabs is NULL");
         }
 
         StartCoroutine(SpawnEnemies());
@@ -66,6 +67,11 @@ public class SpawnManager : MonoBehaviour
         while(_spawningAllowed)
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
+            
+            int randomPowerUpID = Random.Range(0, 2);
+
+            GameObject powerUpPrefab = _powerUpPrefabs[randomPowerUpID];
+
 
             yield return new WaitForSeconds(randomRate);
 
@@ -73,7 +79,7 @@ public class SpawnManager : MonoBehaviour
 
             Vector3 newPowerUpPosition = new Vector3(randomPosX, 7.0f, 0);
 
-            GameObject newPowerUp = Instantiate(_tripleShotPrefab, newPowerUpPosition, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpPrefab, newPowerUpPosition, Quaternion.identity);
         }
     }
 
