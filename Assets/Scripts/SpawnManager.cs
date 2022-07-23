@@ -68,7 +68,7 @@ public class SpawnManager : MonoBehaviour
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
             
-            int randomPowerUpID = Random.Range(0, 2);
+            int randomPowerUpID = Random.Range(0, 3);
 
             GameObject powerUpPrefab = _powerUpPrefabs[randomPowerUpID];
 
@@ -86,5 +86,6 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath(bool allowed)
     {
         _spawningAllowed = allowed;
+        StopAllCoroutines();
     }
 }

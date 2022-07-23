@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     private bool _canFireLasers = true;
 
     private bool _isTripleShotActive = false;
-    private bool _isSpeedBoostActive = false;
+    [SerializeField]
+    private bool _areShieldsActive = false;
 
     [SerializeField]
     private float _tripleShotCoolDown = 3.5f;
@@ -35,6 +36,8 @@ public class Player : MonoBehaviour
 
 
     private SpawnManager _spawnManager;
+    private GameObject _playerShields;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,13 @@ public class Player : MonoBehaviour
         if (_spawnManager == null)
         {
             Debug.LogError("Player::Start() - Spawn Manager is NULL");
+        }
+
+        _playerShields = this.transform.GetChild(0).gameObject;
+
+        if (_playerShields == null)
+        {
+            Debug.LogError("Player::Start() - Player Shields are NULL");
         }
 
         _playerMovementSpeed = _playerBaseMovementSpeed;
@@ -62,6 +72,7 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
     }
 
     void CalculateMovement()
@@ -116,6 +127,12 @@ public class Player : MonoBehaviour
 
     public void RemoveLife()
     {
+        if (_areShieldsActive)
+        {
+            ActivateShields(false);
+            return;
+        }
+
         _playerLives--;
 
         if (_playerLives < 1)
@@ -135,6 +152,9 @@ public class Player : MonoBehaviour
             case "Speed_Boost":
                 StartCoroutine(SpeedBoostCooldown());
                 break;
+            case "Shields":
+                ActivateShields(true);
+                break;
             default:
                 break;
 
@@ -151,11 +171,15 @@ public class Player : MonoBehaviour
     
     IEnumerator SpeedBoostCooldown()
     {
-        _isSpeedBoostActive = true;
         _playerMovementSpeed = _speedBoostMovementSpeed;
         yield return new WaitForSeconds(_speedBoostCoolDown);
-        _isSpeedBoostActive = false;
         _playerMovementSpeed = _playerBaseMovementSpeed;
         StopCoroutine(SpeedBoostCooldown());
+    }
+
+    void ActivateShields(bool status)
+    {
+        _areShieldsActive = status;
+        _playerShields.SetActive(_areShieldsActive);
     }
 }
