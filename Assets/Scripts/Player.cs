@@ -5,9 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _playerMovementSpeed = 5f;
+    private float _playerBaseMovementSpeed = 5f;
+    private float _playerMovementSpeed;
     [SerializeField]
-    private float _speedBoostPowerUpMultiplier = 1f;
+    private float _speedBoostMovementSpeed = 8.5f;
     [SerializeField]
     private float _speedBoostCoolDown = 3.5f;
 
@@ -16,8 +17,9 @@ public class Player : MonoBehaviour
     private Vector3 _laserOffset = new Vector3(0, 0.8f, 0);
     private bool _canFireLasers = true;
 
-    [SerializeField]
     private bool _isTripleShotActive = false;
+    private bool _isSpeedBoostActive = false;
+
     [SerializeField]
     private float _tripleShotCoolDown = 3.5f;
 
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Player::Start() - Spawn Manager is NULL");
         }
+
+        _playerMovementSpeed = _playerBaseMovementSpeed;
     }
 
     // Update is called once per frame
@@ -67,7 +71,7 @@ public class Player : MonoBehaviour
 
         Vector3 movementVector = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(movementVector * _playerMovementSpeed * _speedBoostPowerUpMultiplier * Time.deltaTime);
+        transform.Translate(movementVector * _playerMovementSpeed * Time.deltaTime);
 
         // Keep the player's ship within a clamped range of 0 max and -3.75 min.
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.75f, 0), 0);
@@ -147,9 +151,11 @@ public class Player : MonoBehaviour
     
     IEnumerator SpeedBoostCooldown()
     {
-        _speedBoostPowerUpMultiplier = 2f;
+        _isSpeedBoostActive = true;
+        _playerMovementSpeed = _speedBoostMovementSpeed;
         yield return new WaitForSeconds(_speedBoostCoolDown);
-        _speedBoostPowerUpMultiplier = 1f;
+        _isSpeedBoostActive = false;
+        _playerMovementSpeed = _playerBaseMovementSpeed;
         StopCoroutine(SpeedBoostCooldown());
     }
 }
