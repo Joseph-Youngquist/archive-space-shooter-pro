@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     private TMP_Text _gameOverText;
     [SerializeField]
     private TMP_Text _restartText;
+    [SerializeField]
+    private TMP_Text _gameStatsText;
 
     [SerializeField]
     private Sprite[] _liveSprites;
@@ -47,6 +49,11 @@ public class UIManager : MonoBehaviour
             Debug.LogError("UIManager::Start() - Restart Game Text is NULL");
         }
 
+        if (_gameStatsText == null)
+        {
+            Debug.LogError("UIManager::Start() - Game Stats Text is NULL");
+        }
+
         if (_gameManager == null)
         {
             Debug.LogError("UIManager::Start() - GameManager is NULL");
@@ -63,10 +70,28 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateGameStats(int laserCount, int enemiesKilled)
+    {
+        float accuracy = 0.0f;
+
+        if (laserCount > 0)
+        {
+            accuracy = (enemiesKilled / laserCount) * 100;
+        }
+
+        string statsText = "Lasers Fired:\t" + laserCount.ToString() + " times\n";
+        statsText += "Enemies Killed:\t" + enemiesKilled + "\n";
+        statsText += "Laser Accuracy:\t" + accuracy + "%";
+        _gameStatsText.text = statsText;
+    }
+
     void GameOverSequence()
     {
         _isGameOver = true;
+        
         _restartText.gameObject.SetActive(true);
+        _gameStatsText.gameObject.SetActive(true);
+
         StartCoroutine(GameOverFlicker());
         _gameManager.GameOver();
     }

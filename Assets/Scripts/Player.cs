@@ -158,6 +158,7 @@ public class Player : MonoBehaviour
         if (_playerLives < 1)
         {
             _spawnManager.OnPlayerDeath(false);
+            _uiManager.UpdateGameStats(_laserFiredCount, _enemiesKilled);
             Destroy(this.gameObject);
         }
     }
