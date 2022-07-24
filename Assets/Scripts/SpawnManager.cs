@@ -74,6 +74,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
+        yield return new WaitForSeconds(1.0f);
         while (_enemySpawningAllowed)
         {
             _numberOfEnemiesSpawned++;
@@ -119,7 +120,8 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUp()
     {
-        while(_spawningAllowed)
+        yield return new WaitForSeconds(1.0f);
+        while (_spawningAllowed)
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
             
