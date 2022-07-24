@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private float _movementSpeed = 4.0f;
     [SerializeField]
     private float _deathSpeed = 1.33f;
+    [SerializeField]
+    private float _deathAnimationLength = 2.5f;
 
     private bool _destroyed = false;
 
@@ -99,6 +101,6 @@ public class Enemy : MonoBehaviour
         
         _movementSpeed = _deathSpeed;
         
-        Destroy(this.gameObject, 3.0f);
+        Destroy(this.gameObject, _deathAnimationLength);
     }
 }
