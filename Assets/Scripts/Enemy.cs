@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 4.0f;
+    [SerializeField]
+    private float _deathSpeed = 1.33f;
 
     private bool _destroyed = false;
 
@@ -28,6 +30,10 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Enemy::Start() - Player GameObject is NULL");
         }
 
+        if (_enemyDeathAnimator == null)
+        {
+            Debug.LogError("Enemy::Start() - Death Animation is NULL");
+        }
     }
 
     // Update is called once per frame
@@ -91,7 +97,7 @@ public class Enemy : MonoBehaviour
         
         _enemyDeathAnimator.SetTrigger("OnEnemyDeath");
         
-        _movementSpeed = 1.25f;
+        _movementSpeed = _deathSpeed;
         
         Destroy(this.gameObject, 3.0f);
     }
