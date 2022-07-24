@@ -46,6 +46,11 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("UIManager::Start() - Restart Game Text is NULL");
         }
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("UIManager::Start() - GameManager is NULL");
+        }
     }
 
     public void UpdateLives(int playerLivesLeft)
