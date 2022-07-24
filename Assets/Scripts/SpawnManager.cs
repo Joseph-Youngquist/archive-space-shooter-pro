@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _asteroidPrefab;
+
+    [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
     private GameObject _enemyContainer;
@@ -14,7 +17,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnRateMax = 3.5f;
     [SerializeField]
-    private bool _spawningAllowed = true;
+    private bool _spawningAllowed = false;
+    [SerializeField]
+    private bool _enemySpawningAllowed = false;
+
+    [SerializeField]
+    private int _waveNumber = 0;
+    private int _waveMaxEnemies;
+    private int _numberOfEnemiesSpawned = 0;
+    private int _baseWaveLimit = 10;
 
     [SerializeField]
     GameObject[] _powerUpPrefabs;
@@ -43,14 +54,20 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("SpawnManager::Start() - PowerUp Prefabs is NULL");
         }
 
-        StartCoroutine(SpawnEnemies());
-        StartCoroutine(SpawnPowerUp());
+        if (_asteroidPrefab == null)
+        {
+            Debug.LogError("SpawnManager::Start() - Asteroid Prefab is NULL");
+        }
+
+        Instantiate(_asteroidPrefab, new Vector3(0, 4.0f, 0), Quaternion.identity);
     }
 
     IEnumerator SpawnEnemies()
     {
-        while (_spawningAllowed)
+        while (_enemySpawningAllowed)
         {
+            _numberOfEnemiesSpawned++;
+
             float randomX = Random.Range(-9.0f, 9.0f);
 
             Vector3 newEnemyPosition = new Vector3(randomX, 7.0f, 0);
@@ -59,6 +76,9 @@ public class SpawnManager : MonoBehaviour
             newEnemy.transform.parent = _enemyContainer.transform;
 
             yield return new WaitForSeconds(Random.Range(_spawnRateMin, _spawnRateMax));
+
+            // when the wave limit of enemies have spawned turn off spawning of more enemies.
+            _enemySpawningAllowed = _numberOfEnemiesSpawned < _waveMaxEnemies;
         }
     }
 
@@ -80,6 +100,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 newPowerUpPosition = new Vector3(randomPosX, 7.0f, 0);
 
             GameObject newPowerUp = Instantiate(powerUpPrefab, newPowerUpPosition, Quaternion.identity);
+            
         }
     }
 
@@ -87,5 +108,20 @@ public class SpawnManager : MonoBehaviour
     {
         _spawningAllowed = allowed;
         StopAllCoroutines();
+    }
+
+    public void StartWave()
+    {
+        _waveNumber++;
+
+        _spawningAllowed = true;
+        _enemySpawningAllowed = true;
+        
+        _numberOfEnemiesSpawned = 0;
+        
+        _waveMaxEnemies = _waveNumber * _baseWaveLimit;
+
+        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnPowerUp());
     }
 }
