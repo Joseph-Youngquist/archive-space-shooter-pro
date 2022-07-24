@@ -13,9 +13,13 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
 
+    private Animator _enemyDeathAnimator;
+
     void Start()
     {
         _enemyValue = 10;
+
+        _enemyDeathAnimator = GetComponent<Animator>();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
 
@@ -76,7 +80,19 @@ public class Enemy : MonoBehaviour
 
         if (_destroyed)
         {
-            Destroy(this.gameObject);
+            DestructionSequence();
         }
+    }
+
+    private void DestructionSequence()
+    {
+        var collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        
+        _enemyDeathAnimator.SetTrigger("OnEnemyDeath");
+        
+        _movementSpeed = 1.25f;
+        
+        Destroy(this.gameObject, 3.0f);
     }
 }
