@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     private Sprite[] _liveSprites;
 
     private bool _isGameOver = false;
+
+    [SerializeField]
+    private GameManager _gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,25 +48,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (_isGameOver && Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Game");
-            _isGameOver = false;
-            StopAllCoroutines();
-        }
-    }
     public void UpdateLives(int playerLivesLeft)
     {
         _livesDisplay.sprite = _liveSprites[playerLivesLeft];
 
         if (playerLivesLeft == 0)
         {
-            _isGameOver = true;
-            _restartText.gameObject.SetActive(true);
-            StartCoroutine(GameOverFlicker());
+            GameOverSequence();
         }
+    }
+
+    void GameOverSequence()
+    {
+        _isGameOver = true;
+        _restartText.gameObject.SetActive(true);
+        StartCoroutine(GameOverFlicker());
+        _gameManager.GameOver();
     }
     public void UpdateScoreText(int newScore)
     {
