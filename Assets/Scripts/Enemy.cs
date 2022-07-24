@@ -9,6 +9,23 @@ public class Enemy : MonoBehaviour
 
     private bool _destroyed = false;
 
+    private int _enemyValue;
+
+    private Player _player;
+
+    void Start()
+    {
+        _enemyValue = 10;
+
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_player == null)
+        {
+            Debug.LogError("Enemy::Start() - Player GameObject is NULL");
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,12 +52,9 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // damage the player
-            Player player = other.transform.GetComponent<Player>();
-            
-            if (player != null)
+            if (_player != null)
             {
-                player.RemoveLife(); 
+                _player.RemoveLife(); 
             } 
             else
             {
@@ -54,6 +68,9 @@ public class Enemy : MonoBehaviour
         {
             // destroy laser
             Destroy(other.gameObject);
+            // Add to the player's score
+            _player.AddToScore(_enemyValue);
+            _player.AddEnemyKilled();
             _destroyed = true;
         }
 

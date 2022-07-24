@@ -5,6 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private int _score;
+    [SerializeField]
+    private int _laserFiredCount;
+    [SerializeField]
+    private int _enemiesKilled;
+
+    [SerializeField]
     private float _playerBaseMovementSpeed = 5f;
     private float _playerMovementSpeed;
     [SerializeField]
@@ -38,12 +45,21 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private GameObject _playerShields;
 
+    private UIManager _uiManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         // take the current position =  new position (0, 0, 0)
         transform.position = new Vector3(0, 0, 0);
+
+        _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("Player::Start() - uiManager is NULL");
+        }
 
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
@@ -115,6 +131,8 @@ public class Player : MonoBehaviour
             Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity); 
         }
         
+        _laserFiredCount++;
+        
         StartCoroutine(LaserCooldown());
     }
 
@@ -134,6 +152,8 @@ public class Player : MonoBehaviour
         }
 
         _playerLives--;
+        
+        _uiManager.UpdateLives(_playerLives);
 
         if (_playerLives < 1)
         {
@@ -181,5 +201,16 @@ public class Player : MonoBehaviour
     {
         _areShieldsActive = status;
         _playerShields.SetActive(_areShieldsActive);
+    }
+
+    public void AddToScore(int value)
+    {
+        _score += value;
+        _uiManager.UpdateScoreText(_score);
+    }
+
+    public void AddEnemyKilled()
+    {
+        _enemiesKilled++;
     }
 }
