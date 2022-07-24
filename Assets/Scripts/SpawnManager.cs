@@ -66,12 +66,6 @@ public class SpawnManager : MonoBehaviour
 
         SpawnAsteroid();
     }
-
-    private void Update()
-    {
-        
-    }
-
     IEnumerator SpawnEnemies()
     {
         yield return new WaitForSeconds(1.0f);
@@ -95,21 +89,13 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        Debug.Log("SpawnManager::SpawnAsteroid() - Invoked");
-        // yield return new WaitForSeconds(0.25f);
         Instantiate(_asteroidPrefab, new Vector3(0, 4.0f, 0), Quaternion.identity);
     }
     public void OnEnemyDestroyed()
     {
         _numberOfDestroyedEnemies++;
 
-        // if all the enemies that can spawn have spawned and all the enemies have been destroyed
-        // start a new wave trigger by spawning a new asteroid.
-        Debug.Log("_enemySpawningAllowed: " + _enemySpawningAllowed);
-        Debug.Log("_numberOfDestroyedEnemies: " + _numberOfDestroyedEnemies);
-        Debug.Log("_waveMaxEnemies: " + _waveMaxEnemies);
-        Debug.Log("New Wave Logic is: " + (!_enemySpawningAllowed && _numberOfDestroyedEnemies == _waveMaxEnemies));
-
+        // if all enemies have spawned and been destroyed then start new wave sequence.
         if (_numberOfDestroyedEnemies == _waveMaxEnemies)
         {
             StopAllCoroutines();
