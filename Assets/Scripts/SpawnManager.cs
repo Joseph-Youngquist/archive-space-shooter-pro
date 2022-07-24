@@ -23,8 +23,13 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private int _waveNumber = 0;
+    [SerializeField]
     private int _waveMaxEnemies;
+    [SerializeField]
     private int _numberOfEnemiesSpawned = 0;
+    [SerializeField]
+    private int _numberOfDestroyedEnemies = 0;
+    [SerializeField]
     private int _baseWaveLimit = 10;
 
     [SerializeField]
@@ -59,7 +64,12 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("SpawnManager::Start() - Asteroid Prefab is NULL");
         }
 
-        Instantiate(_asteroidPrefab, new Vector3(0, 4.0f, 0), Quaternion.identity);
+        SpawnAsteroid();
+    }
+
+    private void Update()
+    {
+        
     }
 
     IEnumerator SpawnEnemies()
@@ -79,6 +89,31 @@ public class SpawnManager : MonoBehaviour
 
             // when the wave limit of enemies have spawned turn off spawning of more enemies.
             _enemySpawningAllowed = _numberOfEnemiesSpawned < _waveMaxEnemies;
+        }
+    }
+
+    void SpawnAsteroid()
+    {
+        Debug.Log("SpawnManager::SpawnAsteroid() - Invoked");
+        // yield return new WaitForSeconds(0.25f);
+        Instantiate(_asteroidPrefab, new Vector3(0, 4.0f, 0), Quaternion.identity);
+    }
+    public void OnEnemyDestroyed()
+    {
+        _numberOfDestroyedEnemies++;
+
+        // if all the enemies that can spawn have spawned and all the enemies have been destroyed
+        // start a new wave trigger by spawning a new asteroid.
+        Debug.Log("_enemySpawningAllowed: " + _enemySpawningAllowed);
+        Debug.Log("_numberOfDestroyedEnemies: " + _numberOfDestroyedEnemies);
+        Debug.Log("_waveMaxEnemies: " + _waveMaxEnemies);
+        Debug.Log("New Wave Logic is: " + (!_enemySpawningAllowed && _numberOfDestroyedEnemies == _waveMaxEnemies));
+
+        if (_numberOfDestroyedEnemies == _waveMaxEnemies)
+        {
+            StopAllCoroutines();
+
+            SpawnAsteroid();
         }
     }
 
@@ -118,6 +153,7 @@ public class SpawnManager : MonoBehaviour
         _enemySpawningAllowed = true;
         
         _numberOfEnemiesSpawned = 0;
+        _numberOfDestroyedEnemies = 0;
         
         _waveMaxEnemies = _waveNumber * _baseWaveLimit;
 

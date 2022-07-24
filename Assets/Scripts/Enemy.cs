@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
 
+    private SpawnManager _spawnManager;
+
     private Animator _enemyDeathAnimator;
 
     void Start()
@@ -27,6 +29,8 @@ public class Enemy : MonoBehaviour
 
         _player = GameObject.Find("Player").GetComponent<Player>();
 
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
         if (_player == null)
         {
             Debug.LogError("Enemy::Start() - Player GameObject is NULL");
@@ -35,6 +39,11 @@ public class Enemy : MonoBehaviour
         if (_enemyDeathAnimator == null)
         {
             Debug.LogError("Enemy::Start() - Death Animation is NULL");
+        }
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("Enemy::Start() - SpawnManager is NULL");
         }
     }
 
@@ -100,7 +109,9 @@ public class Enemy : MonoBehaviour
         _enemyDeathAnimator.SetTrigger("OnEnemyDeath");
         
         _movementSpeed = _deathSpeed;
-        
+
+        _spawnManager.OnEnemyDestroyed();
+
         Destroy(this.gameObject, _deathAnimationLength);
     }
 }
