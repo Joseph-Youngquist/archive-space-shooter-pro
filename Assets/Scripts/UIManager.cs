@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
     private Image _livesDisplay;
     [SerializeField]
     private TMP_Text _gameOverText;
+    [SerializeField]
+    private TMP_Text _restartText;
 
     [SerializeField]
     private Sprite[] _liveSprites;
@@ -35,8 +38,21 @@ public class UIManager : MonoBehaviour
             Debug.LogError("UIManager::Start() - Game Over Text is NULL");
         }
 
+        if (_restartText == null)
+        {
+            Debug.LogError("UIManager::Start() - Restart Game Text is NULL");
+        }
     }
 
+    private void Update()
+    {
+        if (_isGameOver && Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Game");
+            _isGameOver = false;
+            StopAllCoroutines();
+        }
+    }
     public void UpdateLives(int playerLivesLeft)
     {
         _livesDisplay.sprite = _liveSprites[playerLivesLeft];
@@ -44,6 +60,7 @@ public class UIManager : MonoBehaviour
         if (playerLivesLeft == 0)
         {
             _isGameOver = true;
+            _restartText.gameObject.SetActive(true);
             StartCoroutine(GameOverFlicker());
         }
     }
