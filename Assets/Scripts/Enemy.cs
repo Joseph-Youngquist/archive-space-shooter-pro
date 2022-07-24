@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 4.0f;
+    [SerializeField]
+    private float _deathSpeed = 1.33f;
+    [SerializeField]
+    private float _deathAnimationLength = 2.5f;
 
     private bool _destroyed = false;
 
@@ -13,17 +17,34 @@ public class Enemy : MonoBehaviour
 
     private Player _player;
 
+    private SpawnManager _spawnManager;
+
+    private Animator _enemyDeathAnimator;
+
     void Start()
     {
         _enemyValue = 10;
 
+        _enemyDeathAnimator = GetComponent<Animator>();
+
         _player = GameObject.Find("Player").GetComponent<Player>();
+
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
         if (_player == null)
         {
             Debug.LogError("Enemy::Start() - Player GameObject is NULL");
         }
 
+        if (_enemyDeathAnimator == null)
+        {
+            Debug.LogError("Enemy::Start() - Death Animation is NULL");
+        }
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("Enemy::Start() - SpawnManager is NULL");
+        }
     }
 
     // Update is called once per frame
@@ -76,7 +97,21 @@ public class Enemy : MonoBehaviour
 
         if (_destroyed)
         {
-            Destroy(this.gameObject);
+            DestructionSequence();
         }
+    }
+
+    private void DestructionSequence()
+    {
+        var collider = GetComponent<Collider2D>();
+        collider.enabled = false;
+        
+        _enemyDeathAnimator.SetTrigger("OnEnemyDeath");
+        
+        _movementSpeed = _deathSpeed;
+
+        _spawnManager.OnEnemyDestroyed();
+
+        Destroy(this.gameObject, _deathAnimationLength);
     }
 }

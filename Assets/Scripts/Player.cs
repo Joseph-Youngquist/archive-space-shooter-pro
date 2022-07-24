@@ -47,6 +47,11 @@ public class Player : MonoBehaviour
 
     private UIManager _uiManager;
 
+    [SerializeField]
+    private GameObject[] _damagedWings;
+    
+    // holds which random index was picked so we can select the other wing when down to 1 life.
+    private int _damagedIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -152,6 +157,24 @@ public class Player : MonoBehaviour
         }
 
         _playerLives--;
+
+        if (_playerLives == 2)
+        {
+            _damagedIndex = Random.Range(0, 2);
+            _damagedWings[_damagedIndex].SetActive(true);
+        }
+
+        if (_playerLives == 1)
+        {
+            if (_damagedIndex == 0)
+            {
+                _damagedWings[1].SetActive(true);
+            } else
+            {
+                _damagedWings[0].SetActive(true);
+            }
+        }
+
         
         _uiManager.UpdateLives(_playerLives);
 
