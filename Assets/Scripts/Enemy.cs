@@ -21,15 +21,23 @@ public class Enemy : MonoBehaviour
 
     private Animator _enemyDeathAnimator;
 
+    private AudioManager _audioManager;
     void Start()
     {
         _enemyValue = 10;
+
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
 
         _enemyDeathAnimator = GetComponent<Animator>();
 
         _player = GameObject.Find("Player").GetComponent<Player>();
 
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+        if (_audioManager == null)
+        {
+            Debug.LogError("Enemy::Start() - AudioManager is NULL");
+        }
 
         if (_player == null)
         {
@@ -111,6 +119,8 @@ public class Enemy : MonoBehaviour
         _movementSpeed = _deathSpeed;
 
         _spawnManager.OnEnemyDestroyed();
+
+        _audioManager.PlayExplosion();
 
         Destroy(this.gameObject, _deathAnimationLength);
     }

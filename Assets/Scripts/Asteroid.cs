@@ -11,10 +11,18 @@ public class Asteroid : MonoBehaviour
 
     private SpawnManager _spawnManager;
     private Animator _destroyAnim;
+    private AudioManager _audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+
+        if (_audioManager == null)
+        {
+            Debug.LogError("Asteroid::Start() - AudioManager is NULL");
+        }
+
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
         if (_spawnManager == null)
@@ -42,7 +50,7 @@ public class Asteroid : MonoBehaviour
             _destroyAnim.SetTrigger("OnDestroy");
             Destroy(other.gameObject);
             Destroy(this.gameObject, _destroyAnimationLength);
-
+            _audioManager.PlayExplosion();
             _spawnManager.StartWave();
         }
     }
