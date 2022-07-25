@@ -15,6 +15,18 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private int _powerUpID;
 
+    private AudioManager _audioManager;
+
+    private void Start()
+    {
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+
+        if (_audioManager == null)
+        {
+            Debug.LogError("PowerUp::Start() - AudioManager is NULL");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,6 +61,9 @@ public class PowerUp : MonoBehaviour
                         break;
                 }
             }
+
+            _audioManager.PlayPowerUp();
+
             Destroy(this.gameObject);
         }
     }

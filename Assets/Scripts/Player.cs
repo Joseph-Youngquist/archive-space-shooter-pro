@@ -36,7 +36,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _laserPrefab;
-    
+
+    private AudioSource _laserAudio;
+
     [SerializeField]
     private GameObject _tripleShotPrefab;
 
@@ -47,9 +49,10 @@ public class Player : MonoBehaviour
 
 
     private SpawnManager _spawnManager;
-    private GameObject _playerShields;
 
     private UIManager _uiManager;
+    
+    private AudioManager _audioManager;
 
     [SerializeField]
     private GameObject[] _damagedWings;
@@ -62,6 +65,13 @@ public class Player : MonoBehaviour
     {
         // take the current position =  new position (0, 0, 0)
         transform.position = new Vector3(0, 0, 0);
+
+        _audioManager = GameObject.Find("Audio_Manager").GetComponent<AudioManager>();
+
+        if (_audioManager == null)
+        {
+            Debug.LogError("Player::Start() - AudioManager is NULL");
+        }
 
         _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
 
@@ -80,6 +90,13 @@ public class Player : MonoBehaviour
         if (_shields == null)
         {
             Debug.LogError("Player::Start() - Player Shields are NULL");
+        }
+
+        _laserAudio = GameObject.Find("Laser_Audio").GetComponent<AudioSource>();
+
+        if(_laserAudio == null)
+        {
+            Debug.LogError("Player::Start() - Laser Audio is NULL");
         }
 
         _playerMovementSpeed = _playerBaseMovementSpeed;
@@ -139,7 +156,9 @@ public class Player : MonoBehaviour
         }
         
         _laserFiredCount++;
-        
+
+        _laserAudio.Play();
+
         StartCoroutine(LaserCooldown());
     }
 
@@ -184,6 +203,7 @@ public class Player : MonoBehaviour
         {
             _spawnManager.OnPlayerDeath(false);
             _uiManager.UpdateGameStats(_laserFiredCount, _enemiesKilled);
+            _audioManager.PlayExplosion();
             Destroy(this.gameObject);
         }
     }
