@@ -36,7 +36,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _laserPrefab;
-    
+
+    private AudioSource _laserAudio;
+
     [SerializeField]
     private GameObject _tripleShotPrefab;
 
@@ -80,6 +82,13 @@ public class Player : MonoBehaviour
         if (_shields == null)
         {
             Debug.LogError("Player::Start() - Player Shields are NULL");
+        }
+
+        _laserAudio = GameObject.Find("Laser_Audio").GetComponent<AudioSource>();
+
+        if(_laserAudio == null)
+        {
+            Debug.LogError("Player::Start() - Laser Audio is NULL");
         }
 
         _playerMovementSpeed = _playerBaseMovementSpeed;
@@ -139,7 +148,9 @@ public class Player : MonoBehaviour
         }
         
         _laserFiredCount++;
-        
+
+        _laserAudio.Play();
+
         StartCoroutine(LaserCooldown());
     }
 
