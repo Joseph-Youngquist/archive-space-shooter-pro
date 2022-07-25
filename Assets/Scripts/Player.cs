@@ -39,7 +39,11 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private GameObject _tripleShotPrefab;
-    
+
+    [SerializeField]
+    private GameObject[] _shields;
+    [SerializeField]
+    private int _shieldsStrength; 
 
 
     private SpawnManager _spawnManager;
@@ -73,9 +77,7 @@ public class Player : MonoBehaviour
             Debug.LogError("Player::Start() - Spawn Manager is NULL");
         }
 
-        _playerShields = this.transform.GetChild(0).gameObject;
-
-        if (_playerShields == null)
+        if (_shields == null)
         {
             Debug.LogError("Player::Start() - Player Shields are NULL");
         }
@@ -152,7 +154,7 @@ public class Player : MonoBehaviour
     {
         if (_areShieldsActive)
         {
-            ActivateShields(false);
+            AdjustShields(-1);
             return;
         }
 
@@ -197,7 +199,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(SpeedBoostCooldown());
                 break;
             case "Shields":
-                ActivateShields(true);
+                AdjustShields(1);
                 break;
             default:
                 break;
@@ -221,10 +223,42 @@ public class Player : MonoBehaviour
         StopCoroutine(SpeedBoostCooldown());
     }
 
-    void ActivateShields(bool status)
+    void AdjustShields(int powerChange)
     {
-        _areShieldsActive = status;
-        _playerShields.SetActive(_areShieldsActive);
+        // if we have full power to shields (3) and we collected another powerup
+        // we don't need to add more shields, but we can get a bonus to our score.
+
+        if (_shieldsStrength == 3 && powerChange > 0)
+        {
+            _score += 20;
+            return;
+        }
+
+        _shieldsStrength += powerChange;
+
+        // we can't have negative shields...
+        if (_shieldsStrength < 0)
+        {
+            _shieldsStrength = 0;
+        }
+
+        _areShieldsActive = _shieldsStrength > 0;
+        
+        if (powerChange > 0)
+        {
+            _shields[_shieldsStrength - 1].SetActive(true);
+        } 
+        else 
+        {
+            if (_shieldsStrength == 0)
+            {
+                _shields[0].SetActive(false);
+            }
+            else
+            {
+                _shields[_shieldsStrength].SetActive(false);
+            }
+        }
     }
 
     public void AddToScore(int value)

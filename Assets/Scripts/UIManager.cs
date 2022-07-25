@@ -76,12 +76,12 @@ public class UIManager : MonoBehaviour
 
         if (laserCount > 0)
         {
-            accuracy = (enemiesKilled / laserCount) * 100;
+            accuracy = ((float) enemiesKilled / (float) laserCount) * 100f;
         }
-
+        
         string statsText = "Lasers Fired:\t" + laserCount.ToString() + " times\n";
         statsText += "Enemies Killed:\t" + enemiesKilled + "\n";
-        statsText += "Laser Accuracy:\t" + accuracy + "%";
+        statsText += "Laser Accuracy:\t" + accuracy.ToString("n2") + "%";
         _gameStatsText.text = statsText;
     }
 
