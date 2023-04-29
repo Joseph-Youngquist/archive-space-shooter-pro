@@ -10,6 +10,8 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 
+**/.DS_Store
+
 # We're going  to ignore builds
 webgl-build/
 Windows Playable Build/
