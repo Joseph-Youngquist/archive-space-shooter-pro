@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _playerBaseMovementSpeed = 5f;
+    [SerializeField]
+    private float _boostedPlayerMovementSpeed = 15f;
+    [SerializeField]
     private float _playerMovementSpeed;
     [SerializeField]
     private float _speedBoostMovementSpeed = 8.5f;
@@ -105,6 +108,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _playerMovementSpeed = _boostedPlayerMovementSpeed;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _playerMovementSpeed = _playerBaseMovementSpeed;
+        }
+
         CalculateMovement();
         
         // when the user hits the space key, spawn the laser
