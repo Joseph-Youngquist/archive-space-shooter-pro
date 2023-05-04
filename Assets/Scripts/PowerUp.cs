@@ -49,13 +49,16 @@ public class PowerUp : MonoBehaviour
                 switch (_powerUpID)
                 {
                     case 0:
-                        player.ActivatePowerUp("Triple_Shot");
+                        player.ActivatePowerUp(0);
                         break;
                     case 1:
-                        player.ActivatePowerUp("Speed_Boost");
+                        player.ActivatePowerUp(1);
                         break;
                     case 2:
-                        player.ActivatePowerUp("Shields");
+                        player.ActivatePowerUp(2);
+                        break;
+                    case 3:
+                        player.ActivatePowerUp(3);
                         break;
                     default:
                         break;

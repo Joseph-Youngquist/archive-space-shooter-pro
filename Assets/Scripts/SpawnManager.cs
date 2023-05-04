@@ -21,6 +21,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private bool _enemySpawningAllowed = false;
 
+    private Player _player;
+
     [SerializeField]
     private int _waveNumber = 0;
     [SerializeField]
@@ -52,6 +54,12 @@ public class SpawnManager : MonoBehaviour
         if (_enemyContainer == null)
         {
             Debug.LogError("SpawnManager::Start() - Enemy Container is NULL");
+        }
+
+        if (_player == null)
+        {
+            //Debug.LogError("SpawnManager::Start() - Player is NULL");
+            _player = GameObject.Find("Player").GetComponent<Player>();
         }
 
         if (_powerUpPrefabs == null)
@@ -111,7 +119,7 @@ public class SpawnManager : MonoBehaviour
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
             
-            int randomPowerUpID = Random.Range(0, 3);
+            int randomPowerUpID = Random.Range(0, 4);
 
             GameObject powerUpPrefab = _powerUpPrefabs[randomPowerUpID];
 
@@ -144,6 +152,14 @@ public class SpawnManager : MonoBehaviour
         _numberOfDestroyedEnemies = 0;
         
         _waveMaxEnemies = _waveNumber * _baseWaveLimit;
+
+        int _maxAmmoForWave = _waveMaxEnemies + _waveNumber;
+
+        if (_maxAmmoForWave < 15)
+        {
+            _maxAmmoForWave = 15;
+        }
+        _player.ReloadAmmo(_maxAmmoForWave);
 
         StartCoroutine(SpawnEnemies());
         StartCoroutine(SpawnPowerUp());
