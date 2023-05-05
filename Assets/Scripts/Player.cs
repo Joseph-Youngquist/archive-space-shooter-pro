@@ -201,6 +201,15 @@ public class Player : MonoBehaviour
             return;
         }
         _playerLives++;
+
+        for(var wingIndex = 0; wingIndex < _damagedWings.Length; wingIndex++)
+        {
+            if (_damagedWings[wingIndex].activeSelf)
+            {
+                _damagedWings[wingIndex].SetActive(false);
+                break;
+            }
+        }
         _uiManager.UpdateLives(_playerLives);
     }
 
