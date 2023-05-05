@@ -11,6 +11,8 @@ public class PowerUp : MonoBehaviour
     // 0 -> Triple Shot
     // 1 -> Speed Boost
     // 2 -> Shields
+    // 3 -> Ammo Reload
+    // 4 -> Life
 
     [SerializeField]
     private int _powerUpID;
@@ -59,6 +61,9 @@ public class PowerUp : MonoBehaviour
                         break;
                     case 3:
                         player.ActivatePowerUp(3);
+                        break;
+                    case 4:
+                        player.ActivatePowerUp(4);
                         break;
                     default:
                         break;

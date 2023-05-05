@@ -194,6 +194,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    void AddLife()
+    {
+        if (_playerLives == 3)
+        {
+            return;
+        }
+        _playerLives++;
+
+        for(var wingIndex = 0; wingIndex < _damagedWings.Length; wingIndex++)
+        {
+            if (_damagedWings[wingIndex].activeSelf)
+            {
+                _damagedWings[wingIndex].SetActive(false);
+                break;
+            }
+        }
+        _uiManager.UpdateLives(_playerLives);
+    }
+
     IEnumerator LaserCooldown()
     {
         yield return new WaitForSeconds(_playerFireRate);
@@ -254,7 +273,10 @@ public class Player : MonoBehaviour
                 AdjustShields(1);
                 break;
             case 3:
-                this.ReloadAmmo(_maxAmmoCount);
+                ReloadAmmo(_maxAmmoCount);
+                break;
+            case 4:
+                AddLife();
                 break;
             default:
                 break;
