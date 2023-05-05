@@ -2062,6 +2062,7 @@ MonoBehaviour:
   - {fileID: 1802752131879626607, guid: e759367d3914ce94883313ae5b5662a8, type: 3}
   - {fileID: 4403556422219367195, guid: f8d175381cb5149c78c040c8d4dae390, type: 3}
   - {fileID: 7704336935433802599, guid: 97afdcf6a5b60cd4e81ddc5a8b0769e4, type: 3}
+  - {fileID: 5213473846582931566, guid: 46b63ca3f4b12b84d85c535f9770c5ad, type: 3}
   _spawnPowerUpRateMin: 3
   _spawnPowerUpRateMax: 7
 --- !u!4 &1583859249
