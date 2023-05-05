@@ -62,6 +62,9 @@ public class PowerUp : MonoBehaviour
                     case 3:
                         player.ActivatePowerUp(3);
                         break;
+                    case 4:
+                        player.ActivatePowerUp(4);
+                        break;
                     default:
                         break;
                 }
