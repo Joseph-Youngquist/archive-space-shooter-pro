@@ -200,6 +200,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        _playerLives++;
         _uiManager.UpdateLives(_playerLives);
     }
 
