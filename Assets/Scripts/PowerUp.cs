@@ -11,6 +11,8 @@ public class PowerUp : MonoBehaviour
     // 0 -> Triple Shot
     // 1 -> Speed Boost
     // 2 -> Shields
+    // 3 -> Ammo Reload
+    // 4 -> Life
 
     [SerializeField]
     private int _powerUpID;

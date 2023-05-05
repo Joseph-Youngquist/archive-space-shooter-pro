@@ -119,7 +119,7 @@ public class SpawnManager : MonoBehaviour
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
             
-            int randomPowerUpID = Random.Range(0, 4);
+            int randomPowerUpID = Random.Range(0, 5);
 
             GameObject powerUpPrefab = _powerUpPrefabs[randomPowerUpID];
 
