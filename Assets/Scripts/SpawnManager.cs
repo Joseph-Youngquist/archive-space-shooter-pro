@@ -36,7 +36,12 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     GameObject[] _powerUpPrefabs;
-    
+
+    private GameObject _prefabToUse;
+
+    private Dictionary<int, int> _powerUpWeights = new Dictionary<int, int>();
+    private int[] _cumulativeWeights;
+    private int _cumulativeWeight = 0;
 
     [SerializeField]
     private float _spawnPowerUpRateMin = 3.0f;
@@ -71,7 +76,7 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.LogError("SpawnManager::Start() - Asteroid Prefab is NULL");
         }
-
+        CalculatePowerUpRates();
         SpawnAsteroid();
     }
     IEnumerator SpawnEnemies()
@@ -112,17 +117,42 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void CalculatePowerUpRates()
+    {
+        _powerUpWeights.Add( 0, 5 ); // Triple Shot;
+        _powerUpWeights.Add( 1, 7 ); // Speed Boost
+        _powerUpWeights.Add( 2, 2 ); // Shields
+        _powerUpWeights.Add( 3, 9 ); // Reload
+        _powerUpWeights.Add( 4, 2 ); // +1 Life
+        _powerUpWeights.Add( 5, 1 ); // Arc Shot
+
+        _cumulativeWeights = new int[_powerUpWeights.Count];
+        int i = 0;
+        foreach (var kvp in _powerUpWeights)
+        {
+            _cumulativeWeight += kvp.Value;
+            _cumulativeWeights[i++] = _cumulativeWeight;
+        }
+    }
+    private void PickPowerUp()
+    {
+        var rand = new System.Random();
+        int randomWeight = rand.Next(0, _cumulativeWeight);
+        int index = System.Array.BinarySearch(_cumulativeWeights, randomWeight);
+        if (index < 0) index = ~index;
+        //int prefabChosenIndex = _powerUpWeights[index].Key;
+        // return _powerUpPrefabs[prefabChosenIndex];
+        _prefabToUse = _powerUpPrefabs[index];
+    }
+
     IEnumerator SpawnPowerUp()
     {
         yield return new WaitForSeconds(1.0f);
         while (_spawningAllowed)
         {
             float randomRate = Random.Range(_spawnPowerUpRateMin, _spawnPowerUpRateMax);
-            
-            int randomPowerUpID = Random.Range(0, 5);
 
-            GameObject powerUpPrefab = _powerUpPrefabs[randomPowerUpID];
-
+            PickPowerUp(); // _powerUpPrefabs[randomPowerUpID];
 
             yield return new WaitForSeconds(randomRate);
 
@@ -130,7 +160,7 @@ public class SpawnManager : MonoBehaviour
 
             Vector3 newPowerUpPosition = new Vector3(randomPosX, 7.0f, 0);
 
-            GameObject newPowerUp = Instantiate(powerUpPrefab, newPowerUpPosition, Quaternion.identity);
+            GameObject newPowerUp = Instantiate(_prefabToUse, newPowerUpPosition, Quaternion.identity);
             
         }
     }
