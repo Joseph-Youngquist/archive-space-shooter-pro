@@ -119,12 +119,12 @@ public class SpawnManager : MonoBehaviour
 
     private void CalculatePowerUpRates()
     {
-        _powerUpWeights.Add( 0, 5 ); // Triple Shot;
-        _powerUpWeights.Add( 1, 7 ); // Speed Boost
+        _powerUpWeights.Add( 0, 3 ); // Triple Shot;
+        _powerUpWeights.Add( 1, 6 ); // Speed Boost
         _powerUpWeights.Add( 2, 2 ); // Shields
-        _powerUpWeights.Add( 3, 9 ); // Reload
-        _powerUpWeights.Add( 4, 2 ); // +1 Life
-        _powerUpWeights.Add( 5, 1 ); // Arc Shot
+        _powerUpWeights.Add( 3, 6 ); // Reload
+        _powerUpWeights.Add( 4, 1 ); // +1 Life
+        _powerUpWeights.Add( 5, 2 ); // Arc Shot
 
         _cumulativeWeights = new int[_powerUpWeights.Count];
         int i = 0;

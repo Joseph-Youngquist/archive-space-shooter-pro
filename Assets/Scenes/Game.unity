@@ -1336,9 +1336,11 @@ MonoBehaviour:
   _playerFireRate: 0.15
   _areShieldsActive: 0
   _tripleShotCoolDown: 3.5
+  _arcShotCoolDown: 5
   _playerLives: 3
   _laserPrefab: {fileID: 1643644341760993635, guid: 588c5bea0bde1be4faed10f2be39c0b7, type: 3}
   _tripleShotPrefab: {fileID: 1469334038886796167, guid: eb7ad65321476cd43a7ede770fc8f2ec, type: 3}
+  _arcShotPrefab: {fileID: 4850419750032191230, guid: 697057edd41c4e7419daf36ff1afea3f, type: 3}
   _shields:
   - {fileID: 436989437}
   - {fileID: 1086364052}

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5893317858972829373}
   - component: {fileID: 6489014627064936176}
   - component: {fileID: 6340128793642623655}
+  - component: {fileID: 3128787672128301054}
   m_Layer: 0
   m_Name: laser-3
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +99,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: -20
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &3128787672128301054
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910529343456212659}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.021687567, y: -0.02892214}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.58071864, y: 2.9421558}
+  m_EdgeRadius: 0
 --- !u!1 &3639277412330908496
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,9 +137,10 @@ GameObject:
   - component: {fileID: 6750543254513436078}
   - component: {fileID: 5686737438728234932}
   - component: {fileID: 1059427832111857613}
+  - component: {fileID: 2374063256532656541}
   m_Layer: 0
   m_Name: laser-2
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,6 +225,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: 20
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &2374063256532656541
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639277412330908496}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.011902094, y: -0.021691501}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.61119866, y: 2.9566169}
+  m_EdgeRadius: 0
 --- !u!1 &4461761616917568368
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,9 +263,10 @@ GameObject:
   - component: {fileID: 1478442298271305518}
   - component: {fileID: 1024474066627338385}
   - component: {fileID: 6990842405494174673}
+  - component: {fileID: 410033662891581727}
   m_Layer: 0
   m_Name: laser-7
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,6 +351,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: 35
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &410033662891581727
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461761616917568368}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.014832124, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6111653, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &4850419750032191230
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,9 +429,10 @@ GameObject:
   - component: {fileID: 2920252466933997030}
   - component: {fileID: 8509115926887745392}
   - component: {fileID: 3515815388154717349}
+  - component: {fileID: 344457633234962938}
   m_Layer: 0
   m_Name: laser-9
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,6 +517,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: -50
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &344457633234962938
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149412549702672207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.014788441, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4377643, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &5151729446417450612
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,9 +555,10 @@ GameObject:
   - component: {fileID: 3663145267721834374}
   - component: {fileID: 5228263331711842511}
   - component: {fileID: 3778461327847733562}
+  - component: {fileID: 2599299707808029363}
   m_Layer: 0
   m_Name: laser-8
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -530,6 +643,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: 50
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &2599299707808029363
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151729446417450612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.027541012, y: -0.03404355}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.54533, y: 2.931913}
+  m_EdgeRadius: 0
 --- !u!1 &5649776948908892126
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,9 +681,10 @@ GameObject:
   - component: {fileID: 2514504180091945678}
   - component: {fileID: 3939029526537592344}
   - component: {fileID: 135314163713954435}
+  - component: {fileID: 6583396906366459739}
   m_Layer: 0
   m_Name: laser-1
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,6 +769,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: 0
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &6583396906366459739
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649776948908892126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.007934749, y: -0.011902392}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6191336, y: 2.9761953}
+  m_EdgeRadius: 0
 --- !u!1 &6478023109711880002
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,9 +807,10 @@ GameObject:
   - component: {fileID: 1013039811773890440}
   - component: {fileID: 138193931717764630}
   - component: {fileID: 7245460257925941393}
+  - component: {fileID: 7925771237397172720}
   m_Layer: 0
   m_Name: laser-6
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,6 +895,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: -35
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &7925771237397172720
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478023109711880002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00011372566, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6369598, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &7571513999805326202
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,9 +933,10 @@ GameObject:
   - component: {fileID: 3515449052832686253}
   - component: {fileID: 5092621656273652534}
   - component: {fileID: 7352119662697442180}
+  - component: {fileID: 4358312554631691126}
   m_Layer: 0
   m_Name: laser-4
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -824,6 +1021,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: 60
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &4358312554631691126
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571513999805326202}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.058031663, y: -0.028922081}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.65340686, y: 2.9421558}
+  m_EdgeRadius: 0
 --- !u!1 &7688415567717987810
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,9 +1059,10 @@ GameObject:
   - component: {fileID: 1655289602814275215}
   - component: {fileID: 6305133792969784368}
   - component: {fileID: 524277904891039115}
+  - component: {fileID: 2310825654726531995}
   m_Layer: 0
   m_Name: laser-5
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -922,3 +1147,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arcAngle: -60
+  _arcShotLaserMovementSpeed: 15
+--- !u!61 &2310825654726531995
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688415567717987810}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000010430813, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.70940876, y: 3}
+  m_EdgeRadius: 0

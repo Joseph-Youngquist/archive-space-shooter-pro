@@ -28,11 +28,16 @@ public class Player : MonoBehaviour
     private bool _canFireLasers = true;
 
     private bool _isTripleShotActive = false;
+    private bool _isArcShotActive = false;
+
     [SerializeField]
     private bool _areShieldsActive = false;
 
     [SerializeField]
     private float _tripleShotCoolDown = 3.5f;
+
+    [SerializeField]
+    private float _arcShotCoolDown = 5.0f;
 
     [SerializeField]
     private int _playerLives = 3;
@@ -44,6 +49,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _tripleShotPrefab;
+
+    [SerializeField]
+    private GameObject _arcShotPrefab;
 
     [SerializeField]
     private GameObject[] _shields;
@@ -104,6 +112,11 @@ public class Player : MonoBehaviour
         if(_laserAudio == null)
         {
             Debug.LogError("Player::Start() - Laser Audio is NULL");
+        }
+
+        if(_arcShotPrefab == null)
+        {
+            Debug.LogError("Player::Start() - Arc Shot Prefab is NULL");
         }
 
         _playerMovementSpeed = _playerBaseMovementSpeed;
@@ -171,6 +184,9 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive)
         {
             Instantiate(_tripleShotPrefab, transform.position + _laserOffset, Quaternion.identity);
+        } else if (_isArcShotActive)
+        {
+            Instantiate(_arcShotPrefab, transform.position + _laserOffset, Quaternion.identity);
         } else
         {
             Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity); 
@@ -187,10 +203,6 @@ public class Player : MonoBehaviour
 
             _uiManager.UpdateAmmoText(_currentAmmoCount, _maxAmmoCount);
             
-        }
-        else
-        {
-            // TODO implement empty ammo sound and shake ammo text...
         }
     }
 
@@ -278,6 +290,9 @@ public class Player : MonoBehaviour
             case 4:
                 AddLife();
                 break;
+            case 5:
+                StartCoroutine(ArcShotsCooldown());
+                break;
             default:
                 break;
 
@@ -305,6 +320,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_speedBoostCoolDown);
         _playerMovementSpeed = _playerBaseMovementSpeed;
         StopCoroutine(SpeedBoostCooldown());
+    }
+
+    IEnumerator ArcShotsCooldown()
+    {
+        _isArcShotActive = true;
+        yield return new WaitForSeconds(_arcShotCoolDown);
+        _isArcShotActive = false;
+        StopCoroutine(ArcShotsCooldown());
     }
 
     void AdjustShields(int powerChange)
