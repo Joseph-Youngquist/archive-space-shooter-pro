@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6489014627064936176}
   - component: {fileID: 6340128793642623655}
   - component: {fileID: 3128787672128301054}
+  - component: {fileID: 5689661500484607280}
   m_Layer: 0
   m_Name: laser-3
   m_TagString: Laser
@@ -126,6 +127,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58071864, y: 2.9421558}
   m_EdgeRadius: 0
+--- !u!50 &5689661500484607280
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910529343456212659}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3639277412330908496
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +160,7 @@ GameObject:
   - component: {fileID: 5686737438728234932}
   - component: {fileID: 1059427832111857613}
   - component: {fileID: 2374063256532656541}
+  - component: {fileID: 4793533686194538222}
   m_Layer: 0
   m_Name: laser-2
   m_TagString: Laser
@@ -252,6 +275,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.61119866, y: 2.9566169}
   m_EdgeRadius: 0
+--- !u!50 &4793533686194538222
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639277412330908496}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4461761616917568368
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +308,7 @@ GameObject:
   - component: {fileID: 1024474066627338385}
   - component: {fileID: 6990842405494174673}
   - component: {fileID: 410033662891581727}
+  - component: {fileID: 6498796380409118244}
   m_Layer: 0
   m_Name: laser-7
   m_TagString: Laser
@@ -378,6 +423,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6111653, y: 3}
   m_EdgeRadius: 0
+--- !u!50 &6498796380409118244
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461761616917568368}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4850419750032191230
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +496,7 @@ GameObject:
   - component: {fileID: 8509115926887745392}
   - component: {fileID: 3515815388154717349}
   - component: {fileID: 344457633234962938}
+  - component: {fileID: 803411886833292676}
   m_Layer: 0
   m_Name: laser-9
   m_TagString: Laser
@@ -544,6 +611,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4377643, y: 3}
   m_EdgeRadius: 0
+--- !u!50 &803411886833292676
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149412549702672207}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5151729446417450612
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +644,7 @@ GameObject:
   - component: {fileID: 5228263331711842511}
   - component: {fileID: 3778461327847733562}
   - component: {fileID: 2599299707808029363}
+  - component: {fileID: 3842249943073540867}
   m_Layer: 0
   m_Name: laser-8
   m_TagString: Laser
@@ -670,6 +759,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.54533, y: 2.931913}
   m_EdgeRadius: 0
+--- !u!50 &3842249943073540867
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151729446417450612}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5649776948908892126
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +792,7 @@ GameObject:
   - component: {fileID: 3939029526537592344}
   - component: {fileID: 135314163713954435}
   - component: {fileID: 6583396906366459739}
+  - component: {fileID: 3746632575821968909}
   m_Layer: 0
   m_Name: laser-1
   m_TagString: Laser
@@ -796,6 +907,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6191336, y: 2.9761953}
   m_EdgeRadius: 0
+--- !u!50 &3746632575821968909
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649776948908892126}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6478023109711880002
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +940,7 @@ GameObject:
   - component: {fileID: 138193931717764630}
   - component: {fileID: 7245460257925941393}
   - component: {fileID: 7925771237397172720}
+  - component: {fileID: 3731213603640082919}
   m_Layer: 0
   m_Name: laser-6
   m_TagString: Laser
@@ -922,6 +1055,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6369598, y: 3}
   m_EdgeRadius: 0
+--- !u!50 &3731213603640082919
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478023109711880002}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7571513999805326202
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,6 +1088,7 @@ GameObject:
   - component: {fileID: 5092621656273652534}
   - component: {fileID: 7352119662697442180}
   - component: {fileID: 4358312554631691126}
+  - component: {fileID: 2740122869310907619}
   m_Layer: 0
   m_Name: laser-4
   m_TagString: Laser
@@ -1048,6 +1203,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65340686, y: 2.9421558}
   m_EdgeRadius: 0
+--- !u!50 &2740122869310907619
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571513999805326202}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7688415567717987810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1236,7 @@ GameObject:
   - component: {fileID: 6305133792969784368}
   - component: {fileID: 524277904891039115}
   - component: {fileID: 2310825654726531995}
+  - component: {fileID: 4161934137749934937}
   m_Layer: 0
   m_Name: laser-5
   m_TagString: Laser
@@ -1174,3 +1351,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.70940876, y: 3}
   m_EdgeRadius: 0
+--- !u!50 &4161934137749934937
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688415567717987810}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
