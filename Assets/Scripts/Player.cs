@@ -48,8 +48,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject[] _shields;
     [SerializeField]
-    private int _shieldsStrength; 
+    private int _shieldsStrength;
 
+    [SerializeField]
+    private int _currentAmmoCount = 15;
+    [SerializeField]
+    private int _maxAmmoCount = 15;
 
     private SpawnManager _spawnManager;
 
@@ -103,6 +107,9 @@ public class Player : MonoBehaviour
         }
 
         _playerMovementSpeed = _playerBaseMovementSpeed;
+
+
+        _uiManager.UpdateAmmoText(_currentAmmoCount, _maxAmmoCount);
     }
 
     // Update is called once per frame
@@ -168,12 +175,23 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity); 
         }
-        
-        _laserFiredCount++;
 
-        _laserAudio.Play();
+        if (_currentAmmoCount > 0)
+        {
+            _laserFiredCount++;
+            _currentAmmoCount--;
 
-        StartCoroutine(LaserCooldown());
+            _laserAudio.Play();
+
+            StartCoroutine(LaserCooldown());
+
+            _uiManager.UpdateAmmoText(_currentAmmoCount, _maxAmmoCount);
+            
+        }
+        else
+        {
+            // TODO implement empty ammo sound and shake ammo text...
+        }
     }
 
     IEnumerator LaserCooldown()
@@ -222,23 +240,33 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ActivatePowerUp(string powerupName)
+    public void ActivatePowerUp(int powerupID)
     {
-        switch (powerupName)
+        switch (powerupID)
         {
-            case "Triple_Shot":
+            case 0:
                 StartCoroutine(TripleShotCooldown());
                 break;
-            case "Speed_Boost":
+            case 1:
                 StartCoroutine(SpeedBoostCooldown());
                 break;
-            case "Shields":
+            case 2:
                 AdjustShields(1);
+                break;
+            case 3:
+                this.ReloadAmmo(_maxAmmoCount);
                 break;
             default:
                 break;
 
         }
+    }
+
+    public void ReloadAmmo(int newCount)
+    {
+        _currentAmmoCount = _maxAmmoCount = newCount;
+
+        _uiManager.UpdateAmmoText(_currentAmmoCount, _maxAmmoCount);
     }
 
     IEnumerator TripleShotCooldown()

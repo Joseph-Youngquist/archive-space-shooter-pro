@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Laser
   - Triple_Shot_PowerUp
+  - Reload_PowerUp
   layers:
   - Default
   - TransparentFX

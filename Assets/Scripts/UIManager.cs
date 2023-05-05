@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     private TMP_Text _restartText;
     [SerializeField]
     private TMP_Text _gameStatsText;
+    [SerializeField]
+    private TMP_Text _ammoText;
 
     [SerializeField]
     private Sprite[] _liveSprites;
@@ -26,9 +28,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
+    private Color _red = new Color(1f, 0.25f, 0.25f);
+    private Color _white = new Color(1f, 1f, 1f);
+
+    private bool _isOutOfAmmo = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        if(_ammoText == null)
+        {
+            Debug.LogError("UIManager::Start() - Ammo Text is NULL");
+        }
         if (_scoreText == null)
         {
             Debug.LogError("UIManager::Start() - Score Text Mesh is NULL.");
@@ -100,6 +111,34 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + newScore;
     }
 
+    public void UpdateAmmoText(int currentAmmoCount, int maxAmmoCount)
+    {
+        _ammoText.text = "Ammo: " + currentAmmoCount.ToString() + "/" + maxAmmoCount.ToString();
+
+        if (currentAmmoCount == 0)
+        {
+            _isOutOfAmmo = true;
+            _ammoText.color = _red;
+            StartCoroutine(OutOfAmmoFlicker());
+        }
+        else
+        {
+            _isOutOfAmmo = false;
+            StopCoroutine(OutOfAmmoFlicker());
+            _ammoText.color = _white;
+            _ammoText.gameObject.SetActive(true);
+        }
+    }
+    IEnumerator OutOfAmmoFlicker()
+    {
+        while(_isOutOfAmmo)
+        {
+            _ammoText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+            _ammoText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
     IEnumerator GameOverFlicker()
     {
         while (_isGameOver)
