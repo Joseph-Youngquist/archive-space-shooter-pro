@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
+    [SerializeField]
+    private ShakeControl _shakeControl;
+
     private Color _red = new Color(1f, 0.25f, 0.25f);
     private Color _white = new Color(1f, 1f, 1f);
 
@@ -75,6 +78,11 @@ public class UIManager : MonoBehaviour
         if(_thrusterGauge == null)
         {
             Debug.LogError("UIMnager::Start() - Thruster Gauge is NULL");
+        }
+
+        if(_shakeControl == null)
+        {
+            Debug.LogError("UIManager::Start() - Shake Control is NULL");
         }
     }
 
@@ -123,6 +131,10 @@ public class UIManager : MonoBehaviour
         _thrusterGauge.value = fuelLeft;
     }
 
+    public void ShakeCamera()
+    {
+        _shakeControl.ShakeCamera();
+    }
     public void UpdateAmmoText(int currentAmmoCount, int maxAmmoCount)
     {
         _ammoText.text = "Ammo: " + currentAmmoCount.ToString() + "/" + maxAmmoCount.ToString();
