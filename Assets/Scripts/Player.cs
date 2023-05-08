@@ -271,6 +271,8 @@ public class Player : MonoBehaviour
 
     public void RemoveLife()
     {
+        _uiManager.ShakeCamera();
+
         if (_areShieldsActive)
         {
             AdjustShields(-1);

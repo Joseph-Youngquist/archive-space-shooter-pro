@@ -779,6 +779,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 482c8e4c0346b704aa5f1760c3c989d5, type: 3}
   - {fileID: 21300000, guid: 9fe6f40efddf0b64fb68a3382b14a4db, type: 3}
   _gameManager: {fileID: 1553440621}
+  _shakeControl: {fileID: 2042717061}
 --- !u!114 &445627119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,6 +2911,7 @@ GameObject:
   - component: {fileID: 2042717058}
   - component: {fileID: 2042717057}
   - component: {fileID: 2042717060}
+  - component: {fileID: 2042717061}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3043,6 +3045,21 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &2042717061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042717056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf633cae356a6c41bc8bd6a73edd4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeIntensity: 0.3
+  shakeSpeed: 15
+  shakeDuration: 0.5
 --- !u!1 &2065689391
 GameObject:
   m_ObjectHideFlags: 0
