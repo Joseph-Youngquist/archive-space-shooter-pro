@@ -19,6 +19,18 @@ public class Player : MonoBehaviour
     private float _playerMovementSpeed;
     [SerializeField]
     private float _speedBoostMovementSpeed = 8.5f;
+    private bool _isUsingThrusters = false;
+    private bool _thrustersAreRecovering = false;
+    private int _thrustersLeft = 100;
+
+    [SerializeField]
+    private int _thrusterRecoveryIncimentedBy = 2;
+    [SerializeField]
+    private int _thrustersFuelReducedBy = 2;
+    [SerializeField]
+    private float _thrusterFuelConsumptionRate = 0.07f;
+    [SerializeField]
+    private float _thrusterRecoverySpeed = 0.25f;
     [SerializeField]
     private float _speedBoostCoolDown = 3.5f;
 
@@ -129,18 +141,14 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_thrustersAreRecovering && !_isUsingThrusters)
         {
             _playerMovementSpeed = _boostedPlayerMovementSpeed;
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            _playerMovementSpeed = _playerBaseMovementSpeed;
+            StartCoroutine(SpeedBoostCooldown());
         }
 
         CalculateMovement();
-        
+
         // when the user hits the space key, spawn the laser
         if (Input.GetButtonDown("Fire1") && _canFireLasers)
         {
@@ -225,6 +233,35 @@ public class Player : MonoBehaviour
         _uiManager.UpdateLives(_playerLives);
     }
 
+    IEnumerator ThrusterRecovery()
+    {
+        while(_thrustersLeft <= 100 && _thrustersAreRecovering)
+        {
+            yield return new WaitForSeconds(_thrusterRecoverySpeed);
+            _thrustersLeft += _thrusterRecoveryIncimentedBy;
+            _uiManager.UpdateFuelGauge(_thrustersLeft);
+            if (_thrustersLeft > 100)
+            {
+                _thrustersLeft = 100;
+                _thrustersAreRecovering = false;
+            }
+        }
+    }
+
+    IEnumerator UseThrusters()
+    {
+        while(_isUsingThrusters)
+        {
+            yield return new WaitForSeconds(_thrusterFuelConsumptionRate);
+            _thrustersLeft -= _thrustersFuelReducedBy;
+            _uiManager.UpdateFuelGauge(_thrustersLeft);
+            if (_thrustersLeft < 0)
+            {
+                _thrustersLeft = 0;
+                _isUsingThrusters = false;
+            }
+        }
+    }
     IEnumerator LaserCooldown()
     {
         yield return new WaitForSeconds(_playerFireRate);
@@ -317,7 +354,15 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostCooldown()
     {
         _playerMovementSpeed = _speedBoostMovementSpeed;
+        _isUsingThrusters = true;
+
+        StartCoroutine(UseThrusters());
         yield return new WaitForSeconds(_speedBoostCoolDown);
+        _isUsingThrusters = false;
+        _thrustersAreRecovering = true;
+        
+        StopCoroutine(UseThrusters());
+        StartCoroutine(ThrusterRecovery());
         _playerMovementSpeed = _playerBaseMovementSpeed;
         StopCoroutine(SpeedBoostCooldown());
     }
