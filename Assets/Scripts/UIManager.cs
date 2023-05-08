@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     private TMP_Text _gameStatsText;
     [SerializeField]
     private TMP_Text _ammoText;
+    [SerializeField]
+    private Slider _thrusterGauge;
 
     [SerializeField]
     private Sprite[] _liveSprites;
@@ -69,6 +71,11 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("UIManager::Start() - GameManager is NULL");
         }
+
+        if(_thrusterGauge == null)
+        {
+            Debug.LogError("UIMnager::Start() - Thruster Gauge is NULL");
+        }
     }
 
     public void UpdateLives(int playerLivesLeft)
@@ -109,6 +116,11 @@ public class UIManager : MonoBehaviour
     public void UpdateScoreText(int newScore)
     {
         _scoreText.text = "Score: " + newScore;
+    }
+
+    public void UpdateFuelGauge(int fuelLeft)
+    {
+        _thrusterGauge.value = fuelLeft;
     }
 
     public void UpdateAmmoText(int currentAmmoCount, int maxAmmoCount)
