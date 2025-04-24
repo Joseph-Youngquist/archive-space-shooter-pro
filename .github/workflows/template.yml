@@ -50,7 +50,7 @@ jobs:
             Library-test-project-
             Library-
 
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v4
         id: testRunner
         with:
           testMode: all
@@ -95,7 +95,7 @@ jobs:
             Library-build-
             Library-
 
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: WebGL
 
